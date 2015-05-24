@@ -21,13 +21,25 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% Add ones column to X
+X = [ones(m, 1) X];
+
+% Theta 1 dim => 25x401
+% Theta 2 dim => 10x26
+
+% Compute atwo
+atwo = sigmoid(X*Theta1');
 
 
+% Add ones column to atwo
+colAtwo = size(atwo, 1);
+atwo = [ones(colAtwo,1) atwo];
 
+% Compute athree
+athree = sigmoid(atwo*Theta2');
 
-
-
-
+% Make up p with the maxs
+[maxs p] = max(athree, [], 2);
 
 % =========================================================================
 
